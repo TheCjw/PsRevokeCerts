@@ -28,12 +28,15 @@ Get-ChildItem $certPath -Filter *.crt | ForEach-Object {
   if ($result.Success) {
     $commonName = $result.Captures[0].value.Replace("`"", "")
   }
-  Write-Host "Revoke" $commonName -ForegroundColor DarkYellow
-  Write-Host "  Valid from" $info.NotBefore "to" $info.NotAfter
-  Write-Host "  SerialNumber:" $info.SerialNumber
-  Write-Host "  Thumbprint:" $info.Thumbprint
-  $choise = Read-Host "[Y/N]"
-  if ($choise -eq "Y") {
-    $result = Import-Certificate -FilePath $certFile -CertStoreLocation Cert:\LocalMachine\Disallowed
+
+  if (-Not (Test-Path (Join-Path Cert:\LocalMachine\Disallowed $info.Thumbprint))) {
+    Write-Host "Revoke" $commonName -ForegroundColor DarkYellow
+    Write-Host "  Valid from" $info.NotBefore "to" $info.NotAfter
+    Write-Host "  SerialNumber:" $info.SerialNumber
+    Write-Host "  Thumbprint:" $info.Thumbprint
+    $choise = Read-Host "[Y/N]"
+    if ($choise -eq "Y") {
+      $result = Import-Certificate -FilePath $certFile -CertStoreLocation Cert:\LocalMachine\Disallowed
+    }
   }
 }
