@@ -1,6 +1,6 @@
 # PsRevokeCerts
 
-吊销、恢复[RevokeChinaCerts](https://github.com/chengar28/RevokeChinaCerts)中Windows数字证书的PowerShell脚本。仅支持全部添加和全部删除。
+吊销、恢复[RevokeChinaCerts](https://github.com/chengr28/RevokeChinaCerts)中Windows数字证书的PowerShell脚本。仅支持全部添加和全部删除。
 
 ## Usage
 
