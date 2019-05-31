@@ -1,0 +1,3 @@
+[submodule "RevokeChinaCerts"]
+	path = RevokeChinaCerts
+	url = https://github.com/chengr28/RevokeChinaCerts
